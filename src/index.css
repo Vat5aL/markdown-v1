@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  
+  .preview-content,
+  .preview-content * {
+    visibility: visible;
+  }
+  
+  .preview-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 2rem !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: white !important;
+  }
+
+  .prose {
+    max-width: none !important;
+    font-size: inherit !important;
+  }
+
+  h1, h2, h3 {
+    break-after: avoid-page;
+  }
+
+  table {
+    break-inside: avoid;
+  }
+
+  pre {
+    break-inside: avoid;
+    white-space: pre-wrap;
+  }
+}
+
+.prose {
+  --tw-prose-body: theme('colors.gray.600');
+  --tw-prose-headings: theme('colors.gray.900');
+  --tw-prose-links: theme('colors.blue.600');
+  line-height: 1.5;
+}
+
+.dark .prose {
+  --tw-prose-body: theme('colors.gray.300');
+  --tw-prose-headings: theme('colors.gray.100');
+  --tw-prose-links: theme('colors.blue.400');
+}
+
+.prose pre {
+  background-color: #1a1a1a !important;
+  color: #fff !important;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.prose th,
+.prose td {
+  padding: 0.75rem;
+}
+
+.prose hr {
+  margin: 0.75rem 0;
+  border-color: currentColor;
+  opacity: 0.2;
+}
+
+.prose p {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose blockquote {
+  font-style: normal;
+}
+
+.prose blockquote p:first-of-type::before,
+.prose blockquote p:last-of-type::after {
+  content: "";
+}
+
+/* Fix PDF export alignment */
+@media print, (min-resolution: 200dpi) {
+  .preview-content {
+    transform-origin: top left;
+    transform: scale(1);
+  }
+}
